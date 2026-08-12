@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>valdrada</title>
+<link rel="icon" type="image/png" href="../assets/eye.png">
+<style>
+  body {
+    margin: 0;
+    background: #e5e9f1;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* Centered fixed‑width page container to create blank side margins */
+  #pageWrapper {
+    width: 620px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 2500px;
+  }
+
+  /* Canvas container */
+  #scene {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* All images default to absolute layering */
+  #scene img {
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    pointer-events: auto; /* allows hover and mousemove events */
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Curly downward motion for the word "water" */
+  #waterWord.curly {
+    animation: curlyMove 0.8s ease-out forwards;
+    display: inline-block;
+  }
+
+  @keyframes curlyMove {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    20%  { transform: translate(-2px,4px) rotate(-5deg); }
+    40%  { transform: translate(3px,10px) rotate(4deg); }
+    60%  { transform: translate(-3px,16px) rotate(-6deg); }
+    80%  { transform: translate(2px,22px) rotate(3deg); }
+    100% { transform: translate(0,28px) rotate(0deg); }
+  }
+
+  .w-letter, .a-letter, .t-letter, .e-letter, .r-letter {
+    display:inline-block;
+    transition: transform 0.4s ease-out;
+  }
+  .letters-fall .w-letter { transform: translateY(10px) rotate(-8deg); }
+  .letters-fall .a-letter { transform: translateY(20px) rotate(10deg); }
+  .letters-fall .t-letter { transform: translateY(32px) rotate(-12deg); }
+  .letters-fall .e-letter { transform: translateY(18px) rotate(8deg); }
+  .letters-fall .r-letter { transform: translateY(26px) rotate(-10deg); }
+</style>
+</head>
+
+<body>
+<div id="pageWrapper">
+<h1 id="titleText" style="position:absolute; top:80px; width:100%; text-align:center;
+           font-family:'Georgia', serif; font-size:32px; letter-spacing:2px;
+           color:#ffffff; z-index:9999; pointer-events:none;">
+</h1>
+
+<img src="images/Valdrada.png" 
+     style="position:absolute; top:150px; left:50%; transform:translateX(-50%); 
+            width: 100%; z-index:9999; pointer-events:none; opacity:0; transition:opacity 1.5s ease-out;">
+
+<button id="revealBtn" 
+        style="position:absolute; top:360px; left:50%; transform:translateX(-50%);
+               font-size:40px; background:none; font-family:'Georgia', serif; border:none; cursor:pointer;
+               z-index:9999; color:#2a2a2a; text-decoration: underline; display:none;">
+  …
+</button>
+
+<div id="textBlock" style="visibility:hidden;">
+
+<p id="valdradaDescription"
+   style="position:absolute; top:400px; width:80%; left:50%;
+          transform:translateX(-50%); font-family:'Georgia', serif;
+          font-size:20px; line-height:1.5; color:#2a2a2a;
+          text-align:center; pointer-events:auto; z-index:9999; margin-bottom: 40px; opacity:0; transition:opacity 0.8s ease-out;">
+  On the lake’s edge,<br> Valdrada’s early builders set up <br><span id="verandaWord" style="cursor:pointer; text-decoration:underline;">veranda</span> after veranda <br>and raised streets whose railings <br>turn toward the <span id="waterWord" style="cursor:pointer; pointer-events:auto; display:inline-block; white-space:nowrap; text-decoration:underline;">
+    <span class="w-letter">w</span>
+    <span class="a-letter">a</span>
+    <span class="t-letter">t</span>
+    <span class="e-letter">e</span>
+    <span class="r-letter">r</span>
+  </span>.<br>
+</p>
+
+<button id="moreDots"
+        style="position:absolute; top:1600px; left:50%; transform:translateX(-50%);
+               font-size:40px; background:none; font-family:'Georgia', serif; border:none; cursor:pointer;
+               z-index:9999; color:#2a2a2a; text-decoration:underline; display:none;">
+  …
+</button>
+
+<p style="position:absolute; top:1600px; width:80%; left:50%;
+          transform:translateX(-50%); font-family:'Georgia', serif;
+          font-size:20px; line-height:1.5; color:#2a2a2a;
+          text-align:center; z-index:9999; pointer-events:none; margin-bottom: 40px; opacity:0; transition:opacity 0.8s ease-out;">
+  When you approach it,<br> you see two cities at once:<br> the one standing above the lake,<br> and its perfect, upside-down double held in the surface below.<br>
+</p>
+
+<button id="moreDots2"
+        style="position:absolute; top:1750px; left:50%; transform:translateX(-50%);
+               font-size:40px; background:none; font-family:'Georgia', serif; border:none; cursor:pointer;
+               z-index:9999; color:#2a2a2a; text-decoration:underline; display:none;">…</button>
+
+<p style="position:absolute; top:1780px; width:80%; left:50%;
+          transform:translateX(-50%); font-family:'Georgia', serif;
+          font-size:20px; line-height:1.5; color:#2a2a2a;
+          text-align:center; z-index:9999; pointer-events:none; margin-bottom: 40px; opacity:0; transition:opacity 0.8s ease-out;">
+  Nothing in the upper city is left unreflected.<br> Every edge,<br> every room,<br> every gesture is repeated in the water.<br>
+</p>
+
+<button id="moreDots3"
+        style="position:absolute; top:1900px; left:50%; transform:translateX(-50%);
+               font-size:40px; background:none; font-family:'Georgia', serif; border:none; cursor:pointer;
+               z-index:9999; color:#2a2a2a; text-decoration:underline; display:none;">…</button>
+
+<p style="position:absolute; top:1920px; width:80%; left:50%;
+          transform:translateX(-50%); font-family:'Georgia', serif;
+          font-size:20px; line-height:1.5; color:#2a2a2a;
+          text-align:center; z-index:9999; pointer-events:auto; margin-bottom: 40px; opacity:0; transition:opacity 0.8s ease-out;">
+  The reflection does not treat everything equally.<br> Some things <span id="gainWord" style="cursor:pointer; text-decoration:underline; pointer-events:auto;">gain</span> <span id="weightWord" style="cursor:pointer; text-decoration:underline; pointer-events:auto;">weight</span> in the water;<br> others <span id="loseWord" style="cursor:pointer; text-decoration:underline; pointer-events:auto;">lose</span> <span id="itWord" style="cursor:pointer; text-decoration:underline; pointer-events:auto;">it</span>.<br>
+</p>
+
+<button id="moreDots4"
+        style="position:absolute; top:2010px; left:50%; transform:translateX(-50%);
+               font-size:40px; background:none; font-family:'Georgia', serif; border:none; cursor:pointer;
+               z-index:9999; color:#2a2a2a; text-decoration:underline; display:none;">…</button>
+
+<p style="position:absolute; top:2030px; width:80%; left:50%;
+          transform:translateX(-50%); font-family:'Georgia', serif;
+          font-size:20px; line-height:1.5; color:#2a2a2a;
+          text-align:center; z-index:9999; pointer-events:none; margin-bottom: 40px; opacity:0; transition:opacity 0.8s ease-out;">
+  The two Valdradas depend on the other,<br> locked in constant attention.<br>
+</p>
+
+<button id="moreDots5"
+        style="position:absolute; top:2090px; left:50%; transform:translateX(-50%);
+               font-size:40px; background:none; font-family:'Georgia', serif; border:none; cursor:pointer;
+               z-index:9999; color:#2a2a2a; text-decoration:underline; display:none;">…</button>
+
+<p style="position:absolute; top:2130px; width:80%; left:50%;
+          transform:translateX(-50%); font-family:'Georgia', serif;
+          font-size:20px; line-height:1.5; color:#2a2a2a;
+          text-align:center; z-index:9999; pointer-events:auto; margin-bottom: 40px; opacity:0; transition:opacity 0.8s ease-out;">
+  But there is no affection in this arrangement,<br> only the fact of being <span id="seenWord" style="cursor:pointer; text-decoration:underline; pointer-events:auto;">seen</span>.<br>
+</p>
+<img id="eyeImg" src="images/eye1.png"
+     style="position:absolute; top:2240px; left:50%;
+            transform:translateX(-50%);
+            width:50%; opacity:0; transition:opacity 1s ease-out;
+            z-index:9999;">
+<script>
+  document.getElementById("eyeImg").addEventListener("click", () => {
+    window.location.href = "valdrada_questions.html";
+  });
+</script>
+</div>
+
+<div id="scene">
+
+  <img src="images/lower_city_01.png" style="top: 300px; left:0; z-index:1;">
+  <img src="images/cloud.png" style="top:300px; left:0; z-index:2; pointer-events:auto;">
+  <img src="images/lower_city_02.png" style="top:150px; left:0; z-index:3;">
+  <img src="images/cloud1.png" style="top:100px; left:0; z-index:4; pointer-events:auto;">
+  <img src="images/lower_city_03.png" style="top:0px; left:0; z-index:5;">
+</div>
+<script>
+  const water = document.getElementById("waterWord");
+  water.addEventListener("click", () => {
+    water.style.textDecoration = "none";
+    water.classList.remove("letters-fall");
+    void water.offsetWidth;
+    water.classList.add("letters-fall");
+  });
+
+  /* Duplicate "veranda" when clicked */
+  const veranda = document.getElementById("verandaWord");
+  veranda.addEventListener("click", () => {
+    veranda.textContent = "veranda...veranda&veranda";
+    veranda.style.textDecoration = "none";
+  });
+
+  /* Typewriter effect for title */
+  const title = "Welcome to ...";
+  let index = 0;
+  function typeWriter() {
+    if (index <= title.length) {
+      document.getElementById("titleText").textContent = title.slice(0, index);
+      index++;
+      setTimeout(typeWriter, 120);
+    }
+  }
+  typeWriter();
+
+  /* Delayed fade-in for Aldrada image */
+  const aldradaImg = document.querySelector('img[src="images/Valdrada.png"]');
+  setTimeout(() => {
+    aldradaImg.style.opacity = "1";
+    document.getElementById("revealBtn").style.display = "block";
+  }, 1800);
+
+  /* Reveal paragraphs one by one on clicking the "..." button */
+  document.getElementById("revealBtn").addEventListener("click", () => {
+    const ps = document.querySelectorAll("#textBlock p");
+
+    // Only show the first paragraph
+    document.getElementById("textBlock").style.visibility = "visible";
+    ps[0].style.opacity = "1";
+    document.getElementById("moreDots").style.display = "block";
+
+    // Hide all other paragraphs completely
+    for (let i = 1; i < ps.length; i++) {
+      ps[i].style.opacity = "0";
+    }
+
+    // Remove the button after click
+    document.getElementById("revealBtn").style.display = "none";
+  });
+
+  /* Reveal ONLY the second paragraph when clicking the second "..." */
+  document.getElementById("moreDots").addEventListener("click", () => {
+    const ps = document.querySelectorAll("#textBlock p");
+
+    // Reveal ONLY the second paragraph
+    ps[1].style.opacity = "1";
+    document.getElementById("moreDots2").style.display = "block";
+
+    // Remove ONLY this dot
+    document.getElementById("moreDots").style.display = "none";
+  });
+
+  /* Reveal paragraph 2 */
+  document.getElementById("moreDots2").addEventListener("click", () => {
+    const ps = document.querySelectorAll("#textBlock p");
+    ps[2].style.opacity = "1";
+    document.getElementById("moreDots3").style.display = "block";
+    document.getElementById("moreDots2").style.display = "none";
+  });
+
+  /* Reveal paragraph 3 */
+  document.getElementById("moreDots3").addEventListener("click", () => {
+    const ps = document.querySelectorAll("#textBlock p");
+    ps[3].style.opacity = "1";
+    document.getElementById("moreDots4").style.display = "block";
+    document.getElementById("moreDots3").style.display = "none";
+  });
+
+  /* Reveal paragraph 4 */
+  document.getElementById("moreDots4").addEventListener("click", () => {
+    const ps = document.querySelectorAll("#textBlock p");
+    ps[4].style.opacity = "1";
+    document.getElementById("moreDots5").style.display = "block";
+    document.getElementById("moreDots4").style.display = "none";
+  });
+
+  /* Reveal paragraph 5 */
+  document.getElementById("moreDots5").addEventListener("click", () => {
+    const ps = document.querySelectorAll("#textBlock p");
+    ps[5].style.opacity = "1";
+    document.getElementById("moreDots5").style.display = "none";
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    const scene = document.getElementById("scene");
+    const x = e.clientX;
+    const y = e.clientY;
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const offsetX = (x - centerX) / centerX;
+    const offsetY = (y - centerY) / centerY;
+
+    const layers = scene.querySelectorAll("img");
+    layers.forEach((img, i) => {
+      const depth = (i + 1) * 5;
+      const moveX = offsetX * depth;
+      const moveY = offsetY * depth;
+      img.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.03)`;
+    });
+  });
+
+  /* Re-enable parallax interaction on mobile width */
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    document.addEventListener("mousemove", (e) => {
+      const scene = document.getElementById("scene");
+      const x = e.clientX;
+      const y = e.clientY;
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const offsetX = (x - centerX) / centerX;
+      const offsetY = (y - centerY) / centerY;
+
+      const layers = scene.querySelectorAll("img");
+      layers.forEach((img, i) => {
+        const depth = (i + 1) * 6; 
+        const moveX = offsetX * depth;
+        const moveY = offsetY * depth;
+        img.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.01)`;
+      });
+    });
+  }
+
+  /* Reveal eye image only when clicking "seen" */
+  const seen = document.getElementById("seenWord");
+  seen.addEventListener("click", () => {
+    document.getElementById("eyeImg").style.opacity = "1";
+    seen.style.textDecoration = "none";
+  });
+
+  /* Swap eye image on hover */
+  const eye = document.getElementById("eyeImg");
+  eye.addEventListener("mouseenter", () => {
+    eye.src = "images/eye.png";
+  });
+  eye.addEventListener("mouseleave", () => {
+    eye.src = "images/eye1.png";
+  });
+
+  /* Make "gain" clickable and enlarge on click */
+  const gain = document.getElementById("gainWord");
+  gain.addEventListener("click", () => {
+    gain.style.fontWeight = "700";
+    gain.style.fontSize = "24px";
+    gain.style.textDecoration = "none";
+  });
+
+  /* Make "weight" clickable and enlarge on click */
+  const weight = document.getElementById("weightWord");
+  weight.addEventListener("click", () => {
+    weight.style.fontWeight = "700";
+    weight.style.fontSize = "24px";
+    weight.style.textDecoration = "none";
+  });
+
+  /* Make "lose" clickable and cross out on click */
+  const lose = document.getElementById("loseWord");
+  lose.addEventListener("click", () => {
+    lose.style.textDecoration = "line-through";
+    lose.style.opacity = "0.6";
+  });
+
+  /* Make "it" clickable and cross out on click */
+  const itW = document.getElementById("itWord");
+  itW.addEventListener("click", () => {
+    itW.style.textDecoration = "line-through";
+    itW.style.opacity = "0.6";
+  });
+</script>
+</div>
+</body>
+</html>

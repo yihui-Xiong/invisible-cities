@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,300;1,400;1,500&display=swap');
+/* ================================
+   GLOBAL PAGE AESTHETICS
+   ================================ */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #eeeff3;
+    color: #2a2a2a;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    -webkit-font-smoothing: antialiased;
+
+    /* match main page centering */
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* ================================
+   MAIN CONTAINER
+   Centered 620px column
+   ================================ */
+
+#valdrada-app {
+    width: 620px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 20px 200px;
+
+    /* ensure exact alignment with main page */
+    text-align: center;
+}
+
+/* ================================
+   SCENE LAYOUT
+   ================================ */
+
+.scene {
+    margin-bottom: 100px;
+}
+
+.scene-inner {
+    text-align: center;
+    line-height: 1.65;
+}
+
+/* ================================
+   PROMPT TEXT (Questions)
+   ================================ */
+
+.prompt {
+    font-size: 24px;
+    margin-bottom: 28px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color:#6a7a96
+}
+
+/* ================================
+   CHOICE BUTTONS
+   Matches the underline style
+   ================================ */
+
+.choice-group {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.choice-option {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
+    border: none;
+    padding: 6px 0;
+    font-size: 18px;
+    font-family: "Special Elite", monospace;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.8px;
+    cursor: pointer;
+    color: #2a2a2a;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s ease;
+}
+
+.choice-option:hover {
+    opacity: 0.6;
+}
+
+/* Continue button uses same style */
+.continue-button {
+    margin-top: 24px;
+}
+
+/* ================================
+   STORY TEXT (Arc responses)
+   ================================ */
+
+.story-block {
+    margin-top: 24px;
+}
+
+.story-text {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #2a2a2a;
+    margin: 10px 0;
+    max-width: 620px;
+    text-align: center;
+}
+
+/* ================================
+   ENDINGS
+   ================================ */
+
+.ending-title {
+    font-size: 28px;
+    margin-bottom: 24px;
+    margin-top: 40px;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+.scene-ending .story-text {
+    margin: 12px 0;
+    font-size: 20px;
+    font-family: 'Georgia', serif;
+}
+
+/* ================================
+   FADE-IN ANIMATION 
+   ================================ */
+
+.dynamic-scene,
+.scene-ending {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0px); }
+}
+
+/* Match main page "pageWrapper" behavior */
+.pageWrapper-sim {
+    width: 620px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Ensure text blocks resemble main layout spacing */
+.story-text,
+.prompt {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================================
+   KNOT IMAGE (Responsive & Centered)
+   ================================ */
+
+.knot-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.knot-image {
+    width: min(300px, 60%);
+    height: auto;
+    display: block;
+}
